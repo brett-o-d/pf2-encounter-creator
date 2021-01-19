@@ -1,15 +1,11 @@
 import React from 'react';
-import otariBestiary from './bestiaries/troubles-in-otari-bestiary.json';
+import MonsterList from './monsterList';
 
-function App() {
-  var value = '';
-  console.log(otariBestiary);
-  for (let index = 0; index < otariBestiary.length; index++) {
-    const monster = otariBestiary[index];
-    value += monster.name + ", ";
+class App extends React.Component {
+  render(){
+    return <MonsterList/>;
   }
-  // value = 'World';
-  return <div>Hello {value}</div>;
+
 }
  
 export default App;
