@@ -14,20 +14,32 @@ import troublesUnderOtariBestiary from './bestiaries/troubles-in-otari-bestiary.
 
 function MonsterList(){
     const rows = [];
-    ashesBestiary.forEach((ashesMonster) => {rows.push(<li>{ashesMonster.name}</li>)})
-    edgewatchBestiary.forEach((edgewatchMonster) => {rows.push(<li>{edgewatchMonster.name}</li>)})
-    extinctionCurseBestiary.forEach((extinctionCurseMonster) => {rows.push(<li>{extinctionCurseMonster.name}</li>)})
-    plaguestoneBestiary.forEach((plaguestoneMonster) => {rows.push(<li>{plaguestoneMonster.name}</li>)})
-    menaceUnderOtariBestiary.forEach((menaceUnderOtariMonster) => {rows.push(<li>{menaceUnderOtariMonster.name}</li>)})
-    pathfinderBestiary.forEach((pathfinderMonster) => {rows.push(<li>{pathfinderMonster.name}</li>)})
-    pathfinderBestiary2.forEach((pathfinderMonster2) => {rows.push(<li>{pathfinderMonster2.name}</li>)})
-    season1Bestiary.forEach((season1Monster) => {rows.push(<li>{season1Monster.name}</li>)})
-    season2Bestiary.forEach((season2Monster) => {rows.push(<li>{season2Monster.name}</li>)})    
-    slitheringBestiary.forEach((slitheringMonster) => {rows.push(<li>{slitheringMonster.name}</li>)})
-    troublesUnderOtariBestiary.forEach((troublesUnderOtariMonster) => {rows.push(<li>{troublesUnderOtariMonster.name}</li>)})
-    return <ul>
-        <li>{rows}</li>
-    </ul>;
+    ashesBestiary.forEach((ashesMonster) => {
+        rows.push(<li key={ashesMonster._id}>{ashesMonster.name + " " + ashesMonster.data.details.level.value}</li>)});
+    edgewatchBestiary.forEach((edgewatchMonster) => {
+        rows.push(<li key={edgewatchMonster._id}>{edgewatchMonster.name + " " + edgewatchMonster.data.details.level.value}</li>)});
+    extinctionCurseBestiary.forEach((extinctionCurseMonster) => {
+        rows.push(<li key={extinctionCurseMonster._id}>{extinctionCurseMonster.name + " " + extinctionCurseMonster.data.details.level.value}</li>)});
+    plaguestoneBestiary.forEach((plaguestoneMonster) => {
+        rows.push(<li key={plaguestoneMonster._id}>{plaguestoneMonster.name + " " + plaguestoneMonster.data.details.level.value}</li>)});
+    menaceUnderOtariBestiary.forEach((menaceUnderOtariMonster) => {
+        rows.push(<li key={menaceUnderOtariMonster._id}>{menaceUnderOtariMonster.name + " " + menaceUnderOtariMonster.data.details.level.value}</li>)});
+    pathfinderBestiary.forEach((pathfinderMonster) => {
+        rows.push(<li key={pathfinderMonster._id}>{pathfinderMonster.name + " " + pathfinderMonster.data.details.level.value}</li>)});
+    pathfinderBestiary2.forEach((pathfinderMonster2) => {
+        rows.push(<li key={pathfinderMonster2._id}>{pathfinderMonster2.name + " " + pathfinderMonster2.data.details.level.value}</li>)});
+    season1Bestiary.forEach((season1Monster) => {
+        rows.push(<li key={season1Monster._id}>{season1Monster.name + " " + season1Monster.data.details.level.value}</li>)});
+    season2Bestiary.forEach((season2Monster) => {
+        rows.push(<li key={season2Monster._id}>{season2Monster.name + " " + season2Monster.data.details.level.value}</li>)});
+    slitheringBestiary.forEach((slitheringMonster) => {
+        rows.push(<li key={slitheringMonster._id}>{slitheringMonster.name + " " + slitheringMonster.data.details.level.value}</li>)});
+    troublesUnderOtariBestiary.forEach((troublesUnderOtariMonster) => {
+        rows.push(<li key={troublesUnderOtariMonster._id}>{troublesUnderOtariMonster.name + " " + troublesUnderOtariMonster.data.details.level.value}</li>)});
+    return (
+    <ul style={{height:'92vh', overflowY: 'scroll'}}>
+        {rows}
+    </ul>);
 }
 
 export default MonsterList;
