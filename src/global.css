@@ -5,3 +5,8 @@ input {
 .center {
     text-align: center;
 }
+
+.fullHeightScroll {
+    height: 100vh;
+    overflow-y: auto;
+}

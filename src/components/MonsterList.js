@@ -9,6 +9,7 @@ import season1Bestiary from '../bestiaries/pfs-season-1-bestiary.json'
 import season2Bestiary from '../bestiaries/pfs-season-2-bestiary.json'
 import slitheringBestiary from '../bestiaries/the-slithering-bestiary.json'
 import troublesUnderOtariBestiary from '../bestiaries/troubles-in-otari-bestiary.json';
+import '../global.css';
 
 function MonsterList(props) {
 
@@ -79,7 +80,7 @@ function MonsterList(props) {
     }
 
     return (
-    <ul style={{height:'92vh', overflowY: 'scroll'}}>
+    <ul className="fullHeightScroll">
         {rows}
     </ul>);
 }

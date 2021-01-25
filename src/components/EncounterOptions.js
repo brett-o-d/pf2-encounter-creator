@@ -37,7 +37,7 @@ function EncounterOptions(props) {
             <div className="center" id="level">
                 <label htmlFor="level">Party Level</label>
                 <input id="level" value={level} onChange={(event) => levelChanged(event)} type="number" min={minLevel} max={maxLevel}/>
-                <label htmlFor="useAsFilter">Use as Filter:</label>
+                <label htmlFor="useAsFilter">Use as Filter: (&#177;4 levels)</label>
                 <input type="checkbox" id="useAsFilter" value={useLevelAsFilter} onChange={(event) => toggleLevelAsFilter(event)}/>
             </div>
             <br/>

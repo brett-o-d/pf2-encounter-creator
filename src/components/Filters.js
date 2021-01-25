@@ -1,3 +1,5 @@
+import '../global.css';
+
 function Filters(props) {
 
     const filter = props.filter;
@@ -31,7 +33,7 @@ function Filters(props) {
     }
 
     return (
-        <form onSubmit={(event) => handleSubmit(event)}>
+        <form onSubmit={(event) => handleSubmit(event)} className="fullHeightScroll">
             <div id="filters">
                 <p id="title">Filters</p><br id="br-title"/>
                 {checkboxes}
