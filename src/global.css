@@ -2,6 +2,10 @@ input {
     margin: 0px 5px;
 }
 
+table {
+    border-collapse: collapse;
+}
+
 .center {
     text-align: center;
 }

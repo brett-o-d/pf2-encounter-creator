@@ -10,7 +10,7 @@ function App() {
   const [filter, setFilter] = useState([]);
 
   return (
-    <table className="fullHeightScroll">
+    <table>
       <tbody>
         <tr>
           <td>
