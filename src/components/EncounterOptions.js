@@ -27,7 +27,7 @@ function EncounterOptions(props) {
         setUseLevelAsFilter(event.target.checked);
     }
 
-    //Prevents form submission when Enter Key is pressed
+    //Prevents form submission (and page refresh) when Enter Key is pressed
     const handleSubmit = (event) => {
         event.preventDefault();
     }
