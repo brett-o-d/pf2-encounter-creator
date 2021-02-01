@@ -11,7 +11,6 @@ function Encounter(props) {
 
     var rows = [];
     encounterList.forEach((monster) => {
-        console.log(monster.name);
         const monsterLevel = monster.data.details.level.value;
         const monsterXP = MonsterXP[monsterLevel - partyLevel];
         rows.push(<li key={monster._id}>
