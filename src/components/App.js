@@ -1,13 +1,33 @@
 import { useState } from 'react';
+import { MonsterXP } from './Constants';
 import MonsterList from './MonsterList';
 import Filters from './Filters';
 import EncounterOptions from './EncounterOptions'
+import Encounter from './Encounter'
 import '../global.css';
 
 function App() {
-  const [level, setLevel] = useState(0);
-  const [useLevelAsFilter, setUseLevelAsFilter] = useState(false);
+  const [partyLevel, setPartyLevel] = useState(0);
+  const [difficulty, setDifficulty] = useState("");
+  const [usePartyLevelAsFilter, setUsePartyLevelAsFilter] = useState(false);
+  const [useXPAsFilter, setUseXPAsFilter] = useState(false);
   const [filter, setFilter] = useState([]);
+  const [encounterList, setEncounterList] = useState([]);
+
+  function AddtoEncounterList(monster){
+    setEncounterList(encounterList.concat(monster));
+  }
+
+  // Threat	  XP Budget	  Character Adjustment
+  // Trivial	40 or less	10 or less
+  // Low	    60	        15
+  // Moderate	80	        20
+  // Severe	  120	        30
+  // Extreme	160	        40
+
+  const difficultyXP = {trivial: 40, low: 60, moderate: 80, severe: 120, extreme: 160}
+  const encounterXP = encounterList.reduce((total, monster) => MonsterXP[monster.data.details.level.value - partyLevel] + total,0);
+  const remainingXP = difficulty === "" ? 0 : difficultyXP[difficulty] - encounterXP;
 
   return (
     <table>
@@ -17,10 +37,13 @@ function App() {
             <Filters filter={filter} setFilter={setFilter}/>
           </td>
           <td>
-            <EncounterOptions level={level} setLevel={setLevel} useLevelAsFilter={useLevelAsFilter} setUseLevelAsFilter={setUseLevelAsFilter}/>
+            <EncounterOptions partyLevel={partyLevel} setPartyLevel={setPartyLevel} setDifficulty={setDifficulty}
+              setUsePartyLevelAsFilter={setUsePartyLevelAsFilter} setUseXPAsFilter={setUseXPAsFilter}/> <br/>
+            <Encounter remainingXP={remainingXP} encounterList={encounterList} partyLevel={partyLevel} encounterXP={encounterXP}/>
           </td>
           <td>
-            <MonsterList filter={filter} level={level} useLevelAsFilter={useLevelAsFilter}/>
+            <MonsterList filter={filter} partyLevel={partyLevel} usePartyLevelAsFilter={usePartyLevelAsFilter} 
+              useXPAsFilter={useXPAsFilter} remainingXP={remainingXP} AddtoEncounterList={AddtoEncounterList}/>
           </td>
         </tr>
       </tbody>
