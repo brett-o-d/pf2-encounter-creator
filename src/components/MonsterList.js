@@ -11,6 +11,7 @@ import slitheringBestiary from '../bestiaries/the-slithering-bestiary.json'
 import troublesInOtariBestiary from '../bestiaries/troubles-in-otari-bestiary.json';
 import { MonsterXP } from "./Constants";
 import '../global.css';
+import './css/MonsterList.css';
 
 function MonsterList(props) {
 
@@ -39,56 +40,56 @@ function MonsterList(props) {
     }
 
     var rows = [];
-    ashesBestiary.forEach((ashesMonster) => {        
-        const monsterLevel = ashesMonster.data.details.level.value;
-        const monsterXP = MonsterXP[monsterLevel - partyLevel];
-        if ( IsInFilter(monsterLevel, monsterXP) ) {
-            rows.push(<li key={ashesMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-                Name: {ashesMonster.name} 
-                <button onClick={(event) => AddToEncounter(event, ashesMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}</li>)
-        }
-    });
-    edgewatchBestiary.forEach((edgewatchMonster) => {
-        const monsterLevel = edgewatchMonster.data.details.level.value;
-        const monsterXP = MonsterXP[monsterLevel - partyLevel];
-        if ( IsInFilter(monsterLevel, monsterXP) ) {
-            rows.push(<li key={edgewatchMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-                Name: {edgewatchMonster.name} 
-                <button onClick={(event) => AddToEncounter(event, edgewatchMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}</li>)
-        }
-    });
-    extinctionCurseBestiary.forEach((extinctionCurseMonster) => {
-        const monsterLevel = extinctionCurseMonster.data.details.level.value;
-        const monsterXP = MonsterXP[monsterLevel - partyLevel];
-        if ( IsInFilter(monsterLevel, monsterXP) ) {
-            rows.push(<li key={extinctionCurseMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-                Name: {extinctionCurseMonster.name}
-                <button onClick={(event) => AddToEncounter(event, extinctionCurseMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}</li>)
-        }
-    });
-    plaguestoneBestiary.forEach((plaguestoneMonster) => {
-        const monsterLevel = plaguestoneMonster.data.details.level.value;
-        const monsterXP = MonsterXP[monsterLevel - partyLevel];
-        if ( IsInFilter(monsterLevel, monsterXP) ) {
-            rows.push(<li key={plaguestoneMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-                Name: {plaguestoneMonster.name}
-                <button onClick={(event) => AddToEncounter(event, plaguestoneMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}</li>)
-        }
-    });
-    menaceUnderOtariBestiary.forEach((menaceUnderOtariMonster) => {
-        const monsterLevel = menaceUnderOtariMonster.data.details.level.value;
-        const monsterXP = MonsterXP[monsterLevel - partyLevel];
-        if ( IsInFilter(monsterLevel, monsterXP) ) {
-            rows.push(<li key={menaceUnderOtariMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-                Name: {menaceUnderOtariMonster.name}
-                <button onClick={(event) => AddToEncounter(event, menaceUnderOtariMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}</li>)
-        }
-    });
+    // ashesBestiary.forEach((ashesMonster) => {        
+    //     const monsterLevel = ashesMonster.data.details.level.value;
+    //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
+    //     if ( IsInFilter(monsterLevel, monsterXP) ) {
+    //         rows.push(<li key={ashesMonster._id} level={monsterLevel} monsterxp={monsterXP}>
+    //             Name: {ashesMonster.name} 
+    //             <button onClick={(event) => AddToEncounter(event, ashesMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
+    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //     }
+    // });
+    // edgewatchBestiary.forEach((edgewatchMonster) => {
+    //     const monsterLevel = edgewatchMonster.data.details.level.value;
+    //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
+    //     if ( IsInFilter(monsterLevel, monsterXP) ) {
+    //         rows.push(<li key={edgewatchMonster._id} level={monsterLevel} monsterxp={monsterXP}>
+    //             Name: {edgewatchMonster.name} 
+    //             <button onClick={(event) => AddToEncounter(event, edgewatchMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
+    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //     }
+    // });
+    // extinctionCurseBestiary.forEach((extinctionCurseMonster) => {
+    //     const monsterLevel = extinctionCurseMonster.data.details.level.value;
+    //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
+    //     if ( IsInFilter(monsterLevel, monsterXP) ) {
+    //         rows.push(<li key={extinctionCurseMonster._id} level={monsterLevel} monsterxp={monsterXP}>
+    //             Name: {extinctionCurseMonster.name}
+    //             <button onClick={(event) => AddToEncounter(event, extinctionCurseMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
+    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //     }
+    // });
+    // plaguestoneBestiary.forEach((plaguestoneMonster) => {
+    //     const monsterLevel = plaguestoneMonster.data.details.level.value;
+    //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
+    //     if ( IsInFilter(monsterLevel, monsterXP) ) {
+    //         rows.push(<li key={plaguestoneMonster._id} level={monsterLevel} monsterxp={monsterXP}>
+    //             Name: {plaguestoneMonster.name}
+    //             <button onClick={(event) => AddToEncounter(event, plaguestoneMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
+    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //     }
+    // });
+    // menaceUnderOtariBestiary.forEach((menaceUnderOtariMonster) => {
+    //     const monsterLevel = menaceUnderOtariMonster.data.details.level.value;
+    //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
+    //     if ( IsInFilter(monsterLevel, monsterXP) ) {
+    //         rows.push(<li key={menaceUnderOtariMonster._id} level={monsterLevel} monsterxp={monsterXP}>
+    //             Name: {menaceUnderOtariMonster.name}
+    //             <button onClick={(event) => AddToEncounter(event, menaceUnderOtariMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
+    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //     }
+    // });
     pathfinderBestiary.forEach((pathfinderMonster) => {
         const monsterLevel = pathfinderMonster.data.details.level.value;
         const monsterXP = MonsterXP[monsterLevel - partyLevel];
@@ -109,46 +110,46 @@ function MonsterList(props) {
                 Level: {monsterLevel} XP: {monsterXP}</li>)
         }
     });
-    season1Bestiary.forEach((season1Monster) => {
-        const monsterLevel = season1Monster.data.details.level.value;
-        const monsterXP = MonsterXP[monsterLevel - partyLevel];
-        if ( IsInFilter(monsterLevel, monsterXP) ) {
-            rows.push(<li key={season1Monster._id} level={monsterLevel} monsterxp={monsterXP}>
-                Name: {season1Monster.name}
-                <button onClick={(event) => AddToEncounter(event, season1Monster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}</li>)
-        }
-    });
-    season2Bestiary.forEach((season2Monster) => {
-        const monsterLevel = season2Monster.data.details.level.value;
-        const monsterXP = MonsterXP[monsterLevel - partyLevel];
-        if ( IsInFilter(monsterLevel, monsterXP) ) {
-            rows.push(<li key={season2Monster._id} level={monsterLevel} monsterxp={monsterXP}>
-                Name: {season2Monster.name}
-                <button onClick={(event) => AddToEncounter(event, season2Monster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}</li>)
-        }
-    });
-    slitheringBestiary.forEach((slitheringMonster) => {
-        const monsterLevel = slitheringMonster.data.details.level.value;
-        const monsterXP = MonsterXP[monsterLevel - partyLevel];
-        if ( IsInFilter(monsterLevel, monsterXP) ) {
-            rows.push(<li key={slitheringMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-                Name: {slitheringMonster.name}
-                <button onClick={(event) => AddToEncounter(event, slitheringMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}</li>)
-        }
-    });
-    troublesInOtariBestiary.forEach((troublesInOtariMonster) => {
-        const monsterLevel = troublesInOtariMonster.data.details.level.value;
-        const monsterXP = MonsterXP[monsterLevel - partyLevel];
-        if ( IsInFilter(monsterLevel, monsterXP) ) {
-            rows.push(<li key={troublesInOtariMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-                Name: {troublesInOtariMonster.name} 
-                <button onClick={(event) => AddToEncounter(event, troublesInOtariMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}</li>)
-        }
-    });
+    // season1Bestiary.forEach((season1Monster) => {
+    //     const monsterLevel = season1Monster.data.details.level.value;
+    //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
+    //     if ( IsInFilter(monsterLevel, monsterXP) ) {
+    //         rows.push(<li key={season1Monster._id} level={monsterLevel} monsterxp={monsterXP}>
+    //             Name: {season1Monster.name}
+    //             <button onClick={(event) => AddToEncounter(event, season1Monster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
+    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //     }
+    // });
+    // season2Bestiary.forEach((season2Monster) => {
+    //     const monsterLevel = season2Monster.data.details.level.value;
+    //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
+    //     if ( IsInFilter(monsterLevel, monsterXP) ) {
+    //         rows.push(<li key={season2Monster._id} level={monsterLevel} monsterxp={monsterXP}>
+    //             Name: {season2Monster.name}
+    //             <button onClick={(event) => AddToEncounter(event, season2Monster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
+    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //     }
+    // });
+    // slitheringBestiary.forEach((slitheringMonster) => {
+    //     const monsterLevel = slitheringMonster.data.details.level.value;
+    //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
+    //     if ( IsInFilter(monsterLevel, monsterXP) ) {
+    //         rows.push(<li key={slitheringMonster._id} level={monsterLevel} monsterxp={monsterXP}>
+    //             Name: {slitheringMonster.name}
+    //             <button onClick={(event) => AddToEncounter(event, slitheringMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
+    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //     }
+    // });
+    // troublesInOtariBestiary.forEach((troublesInOtariMonster) => {
+    //     const monsterLevel = troublesInOtariMonster.data.details.level.value;
+    //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
+    //     if ( IsInFilter(monsterLevel, monsterXP) ) {
+    //         rows.push(<li key={troublesInOtariMonster._id} level={monsterLevel} monsterxp={monsterXP}>
+    //             Name: {troublesInOtariMonster.name} 
+    //             <button onClick={(event) => AddToEncounter(event, troublesInOtariMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
+    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //     }
+    // });
     
     rows.sort(compareMonsters);    
 

@@ -18,6 +18,12 @@ function App() {
     setEncounterList(encounterList.concat(monster));
   }
 
+  function RemoveFromEncounterList(id){
+    var newEncounterList = [...encounterList];
+    newEncounterList.splice(id, 1);
+    setEncounterList(newEncounterList);
+  }
+
   // Threat	  XP Budget	  Character Adjustment
   // Trivial	40 or less	10 or less
   // Low	    60	        15
@@ -39,7 +45,8 @@ function App() {
           <td>
             <EncounterOptions partyLevel={partyLevel} setPartyLevel={setPartyLevel} setDifficulty={setDifficulty}
               setUsePartyLevelAsFilter={setUsePartyLevelAsFilter} setUseXPAsFilter={setUseXPAsFilter}/> <br/>
-            <Encounter remainingXP={remainingXP} encounterList={encounterList} partyLevel={partyLevel} encounterXP={encounterXP}/>
+            <Encounter remainingXP={remainingXP} encounterList={encounterList} partyLevel={partyLevel} encounterXP={encounterXP}
+              RemoveFromEncounterList={RemoveFromEncounterList}/>
           </td>
           <td>
             <MonsterList filter={filter} partyLevel={partyLevel} usePartyLevelAsFilter={usePartyLevelAsFilter} 

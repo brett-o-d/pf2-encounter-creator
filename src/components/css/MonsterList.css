@@ -1,0 +1,7 @@
+li { 
+    background: #ffeebd; 
+}
+
+li:nth-child(odd) { 
+    background: #dac2b4; 
+}
