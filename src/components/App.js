@@ -10,6 +10,7 @@ function App() {
   const [partyLevel, setPartyLevel] = useState(0);
   const [partyCount, setPartyCount] = useState(4);
   const [difficulty, setDifficulty] = useState("");
+  const [searchMonstersFilter, setSearchMonstersFilter] = useState("");
   const [usePartyLevelAsFilter, setUsePartyLevelAsFilter] = useState(false);
   const [useXPAsFilter, setUseXPAsFilter] = useState(false);
   const [filter, setFilter] = useState([]);
@@ -52,7 +53,8 @@ function App() {
               RemoveFromEncounterList={RemoveFromEncounterList}/>
           </td>
           <td>
-            <MonsterList filter={filter} partyLevel={partyLevel} usePartyLevelAsFilter={usePartyLevelAsFilter} 
+            <MonsterList searchMonstersFilter={searchMonstersFilter} setSearchMonstersFilter={setSearchMonstersFilter}
+              filter={filter} partyLevel={partyLevel} usePartyLevelAsFilter={usePartyLevelAsFilter} 
               useXPAsFilter={useXPAsFilter} remainingXP={remainingXP} AddtoEncounterList={AddtoEncounterList}/>
           </td>
         </tr>

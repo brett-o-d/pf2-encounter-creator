@@ -5,3 +5,7 @@ li {
 li:nth-child(odd) { 
     background: #dac2b4; 
 }
+
+#monsterSearch  {
+    width: 100%;
+}
