@@ -175,10 +175,10 @@ function MonsterList(props) {
     }
 
     return (
-    <div>
+    <div className="fullHeightScroll">
         <input type="text" id="monsterSearch" onChange={(event) => SearchMonstersFilter(event)} placeholder="Search Monsters..."/>
         <br/>
-        <ul className="fullHeightScroll">
+        <ul>
             {rows}
         </ul>
     </div>);
