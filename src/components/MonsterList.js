@@ -52,7 +52,8 @@ function MonsterList(props) {
     //         rows.push(<li name={ashesMonster.name} key={ashesMonster._id} level={monsterLevel} monsterxp={monsterXP}>
     //             Name: {ashesMonster.name} 
     //             <button onClick={(event) => AddToEncounter(event, ashesMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //             Level: {monsterLevel} XP: {monsterXP}
+                // <a href={ashesMonster.data.details.nethysUrl} style={{float:'right'}}>Nethys</a></li>)
     //     }
     // });
     // edgewatchBestiary.forEach((edgewatchMonster) => {
@@ -62,7 +63,8 @@ function MonsterList(props) {
     //         rows.push(<li name={edgewatchMonster.name} key={edgewatchMonster._id} level={monsterLevel} monsterxp={monsterXP}>
     //             Name: {edgewatchMonster.name} 
     //             <button onClick={(event) => AddToEncounter(event, edgewatchMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //             Level: {monsterLevel} XP: {monsterXP}
+                // <a href={edgewatchMonster.data.details.nethysUrl} style={{float:'right'}}>Nethys</a></li>)
     //     }
     // });
     // extinctionCurseBestiary.forEach((extinctionCurseMonster) => {
@@ -72,7 +74,8 @@ function MonsterList(props) {
     //         rows.push(<li name={extinctionCurseMonster.name} key={extinctionCurseMonster._id} level={monsterLevel} monsterxp={monsterXP}>
     //             Name: {extinctionCurseMonster.name}
     //             <button onClick={(event) => AddToEncounter(event, extinctionCurseMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //             Level: {monsterLevel} XP: {monsterXP}
+                // <a href={extinctionCurseMonster.data.details.nethysUrl} style={{float:'right'}}>Nethys</a></li>)
     //     }
     // });
     // plaguestoneBestiary.forEach((plaguestoneMonster) => {
@@ -82,7 +85,8 @@ function MonsterList(props) {
     //         rows.push(<li name={plaguestoneMonster.name} key={plaguestoneMonster._id} level={monsterLevel} monsterxp={monsterXP}>
     //             Name: {plaguestoneMonster.name}
     //             <button onClick={(event) => AddToEncounter(event, plaguestoneMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //             Level: {monsterLevel} XP: {monsterXP}
+                // <a href={plaguestoneMonster.data.details.nethysUrl} style={{float:'right'}}>Nethys</a></li>)
     //     }
     // });
     // menaceUnderOtariBestiary.forEach((menaceUnderOtariMonster) => {
@@ -92,7 +96,8 @@ function MonsterList(props) {
     //         rows.push(<li name={menaceUnderOtariMonster.name} key={menaceUnderOtariMonster._id} level={monsterLevel} monsterxp={monsterXP}>
     //             Name: {menaceUnderOtariMonster.name}
     //             <button onClick={(event) => AddToEncounter(event, menaceUnderOtariMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //             Level: {monsterLevel} XP: {monsterXP}
+                // <a href={menaceUnderOtariMonster.data.details.nethysUrl} style={{float:'right'}}>Nethys</a></li>)
     //     }
     // });
     pathfinderBestiary.forEach((pathfinderMonster) => {
@@ -102,7 +107,8 @@ function MonsterList(props) {
             rows.push(<li name={pathfinderMonster.name} key={pathfinderMonster._id} level={monsterLevel} monsterxp={monsterXP}>
                 Name: {pathfinderMonster.name}
                 <button onClick={(event) => AddToEncounter(event, pathfinderMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}</li>)
+                Level: {monsterLevel} XP: {monsterXP}
+                <a href={pathfinderMonster.data.details.nethysUrl} style={{float:'right'}}>Nethys</a></li>)
         }
     });
     pathfinderBestiary2.forEach((pathfinderMonster2) => {
@@ -112,7 +118,8 @@ function MonsterList(props) {
             rows.push(<li name={pathfinderMonster2.name} key={pathfinderMonster2._id} level={monsterLevel} monsterxp={monsterXP}>
                 Name: {pathfinderMonster2.name}
                 <button onClick={(event) => AddToEncounter(event, pathfinderMonster2)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}</li>)
+                Level: {monsterLevel} XP: {monsterXP}
+                <a href={pathfinderMonster2.data.details.nethysUrl} style={{float:'right'}}>Nethys</a></li>)
         }
     });
     // season1Bestiary.forEach((season1Monster) => {
@@ -122,7 +129,8 @@ function MonsterList(props) {
     //         rows.push(<li name={season1Monster.name} key={season1Monster._id} level={monsterLevel} monsterxp={monsterXP}>
     //             Name: {season1Monster.name}
     //             <button onClick={(event) => AddToEncounter(event, season1Monster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+                // Level: {monsterLevel} XP: {monsterXP}
+                // <a href={season1Monster.data.details.nethysUrl} style={{float:'right'}}>Nethys</a></li>)
     //     }
     // });
     // season2Bestiary.forEach((season2Monster) => {
@@ -132,7 +140,8 @@ function MonsterList(props) {
     //         rows.push(<li name={season2Monster.name} key={season2Monster._id} level={monsterLevel} monsterxp={monsterXP}>
     //             Name: {season2Monster.name}
     //             <button onClick={(event) => AddToEncounter(event, season2Monster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //             Level: {monsterLevel} XP: {monsterXP}
+                // <a href={season2Monster.data.details.nethysUrl} style={{float:'right'}}>Nethys</a></li>)
     //     }
     // });
     // slitheringBestiary.forEach((slitheringMonster) => {
@@ -142,7 +151,8 @@ function MonsterList(props) {
     //         rows.push(<li name={slitheringMonster.name} key={slitheringMonster._id} level={monsterLevel} monsterxp={monsterXP}>
     //             Name: {slitheringMonster.name}
     //             <button onClick={(event) => AddToEncounter(event, slitheringMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //             Level: {monsterLevel} XP: {monsterXP}
+                // <a href={slitheringMonster.data.details.nethysUrl} style={{float:'right'}}>Nethys</a></li>)
     //     }
     // });
     // troublesInOtariBestiary.forEach((troublesInOtariMonster) => {
@@ -152,7 +162,8 @@ function MonsterList(props) {
     //         rows.push(<li name={troublesInOtariMonster.name} key={troublesInOtariMonster._id} level={monsterLevel} monsterxp={monsterXP}>
     //             Name: {troublesInOtariMonster.name} 
     //             <button onClick={(event) => AddToEncounter(event, troublesInOtariMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}</li>)
+    //             Level: {monsterLevel} XP: {monsterXP}
+                // <a href={troublesInOtariMonster.data.details.nethysUrl} style={{float:'right'}}>Nethys</a></li>)
     //     }
     // });
     
