@@ -8,6 +8,7 @@ import '../global.css';
 
 function App() {
   const [partyLevel, setPartyLevel] = useState(0);
+  const [partyCount, setPartyCount] = useState(4);
   const [difficulty, setDifficulty] = useState("");
   const [usePartyLevelAsFilter, setUsePartyLevelAsFilter] = useState(false);
   const [useXPAsFilter, setUseXPAsFilter] = useState(false);
@@ -32,8 +33,9 @@ function App() {
   // Extreme	160	        40
 
   const difficultyXP = {trivial: 40, low: 60, moderate: 80, severe: 120, extreme: 160}
+  const characterXP = {trivial: 10, low: 15, moderate: 20, severe: 30, extreme: 40}
   const encounterXP = encounterList.reduce((total, monster) => MonsterXP[monster.data.details.level.value - partyLevel] + total,0);
-  const remainingXP = difficulty === "" ? 0 : difficultyXP[difficulty] - encounterXP;
+  const remainingXP = Number.isNaN(encounterXP) ? "Invalid Encounter (Monster level out of range for party)" : (difficulty === "" ? 0 : difficultyXP[difficulty] - ((4 - partyCount) * characterXP[difficulty]) - encounterXP);
 
   return (
     <table>
@@ -43,7 +45,8 @@ function App() {
             <Filters filter={filter} setFilter={setFilter}/>
           </td>
           <td>
-            <EncounterOptions partyLevel={partyLevel} setPartyLevel={setPartyLevel} setDifficulty={setDifficulty}
+            <EncounterOptions partyLevel={partyLevel} setPartyLevel={setPartyLevel}
+              partyCount={partyCount} setPartyCount={setPartyCount} setDifficulty={setDifficulty}
               setUsePartyLevelAsFilter={setUsePartyLevelAsFilter} setUseXPAsFilter={setUseXPAsFilter}/> <br/>
             <Encounter remainingXP={remainingXP} encounterList={encounterList} partyLevel={partyLevel} encounterXP={encounterXP}
               RemoveFromEncounterList={RemoveFromEncounterList}/>
