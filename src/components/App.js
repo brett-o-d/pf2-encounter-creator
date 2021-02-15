@@ -82,7 +82,7 @@ function App() {
       <nav className={classes.drawer}>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
-          <SwipeableDrawer anchor= "left" open={filterDrawerOpen} swipeAreaWidth={60}
+          <SwipeableDrawer anchor= "left" open={filterDrawerOpen}
             onClose={(event) => filterDrawerToggle(event, false)}
             onOpen={(event) => filterDrawerToggle(event, true)}
             ModalProps={{keepMounted: true,}}> {/* Better open performance on mobile. */}
