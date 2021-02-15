@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { MonsterXP } from './Constants';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
+import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MonsterList from './MonsterList';
 import Filters from './Filters';
 import EncounterOptions from './EncounterOptions'
 import Encounter from './Encounter'
+import filterIcon from './assets/filter.png';
 import '../global.css';
 
 function App() {
@@ -22,6 +27,7 @@ function App() {
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
 
   const drawerWidth = 50;
+  const filterIconHeight = 50;
 
   const useStyles = makeStyles((theme) => ({
     table: {
@@ -29,12 +35,18 @@ function App() {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
       },
-    }
+    },
+    filterIcon: {
+        [theme.breakpoints.up('sm')]: {
+          display: 'none',
+        },
+    },
   }));
-  
+
   const classes = useStyles();
 
   const filterDrawerToggle = (event, open) => {
+    console.log("Why?");
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
@@ -66,39 +78,50 @@ function App() {
 
   return (
     <div>
-      <nav aria-label="mailbox folders">
+      <nav>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
-          <SwipeableDrawer
-            anchor= "left"
+          <SwipeableDrawer anchor= "left"
             open={filterDrawerOpen}
             onClose={(event) => filterDrawerToggle(event, false)}
             onOpen={(event) => filterDrawerToggle(event, true)}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
+            ModalProps={{keepMounted: true,}}// Better open performance on mobile.
           >
-            <Filters filter={filter} setFilter={setFilter}/>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                Monster Level
+              </AccordionSummary>
+              <AccordionDetails>
+                <Filters filter={filter} setFilter={setFilter}/>
+              </AccordionDetails>
+            </Accordion>
           </SwipeableDrawer>
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer variant="permanent" open>
-            <Filters filter={filter} setFilter={setFilter}/>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                Monster Level
+              </AccordionSummary>
+              <AccordionDetails>
+                <Filters filter={filter} setFilter={setFilter}/>
+              </AccordionDetails>
+            </Accordion>
           </Drawer>
         </Hidden>
       </nav>
       <table className={classes.table} onClick={(event) => filterDrawerToggle(event, false)} onKeyDown={(event) => filterDrawerToggle(event, false)}>
         <tbody>
           <tr>
-            {/* <td>
-              <Filters filter={filter} setFilter={setFilter}/>
-            </td> */}
-            <td>
-              <EncounterOptions partyLevel={partyLevel} setPartyLevel={setPartyLevel}
-                partyCount={partyCount} setPartyCount={setPartyCount} setDifficulty={setDifficulty}
-                setUsePartyLevelAsFilter={setUsePartyLevelAsFilter} setUseXPAsFilter={setUseXPAsFilter}/> <br/>
-              <Encounter remainingXP={remainingXP} encounterList={encounterList} partyLevel={partyLevel} encounterXP={encounterXP}
-                RemoveFromEncounterList={RemoveFromEncounterList}/>
+            <td className="fullHeightScroll" style={{verticalAlign:"top"}}>
+              <img className={classes.filterIcon + " icon"} src={filterIcon} alt="filter" onClick={(event) => {filterDrawerToggle(event, true); event.stopPropagation()}}/>
+              <div style={{height: `calc(100% - ${filterIconHeight}px)`}}>
+                <EncounterOptions partyLevel={partyLevel} setPartyLevel={setPartyLevel}
+                  partyCount={partyCount} setPartyCount={setPartyCount} setDifficulty={setDifficulty}
+                  setUsePartyLevelAsFilter={setUsePartyLevelAsFilter} setUseXPAsFilter={setUseXPAsFilter}/> <br/>
+                <Encounter remainingXP={remainingXP} encounterList={encounterList} partyLevel={partyLevel} encounterXP={encounterXP}
+                  RemoveFromEncounterList={RemoveFromEncounterList}/>
+              </div>
             </td>
             <td>
               <MonsterList searchMonstersFilter={searchMonstersFilter} setSearchMonstersFilter={setSearchMonstersFilter}

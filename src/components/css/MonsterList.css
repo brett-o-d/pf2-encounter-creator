@@ -8,4 +8,6 @@ li:nth-child(odd) {
 
 #monsterSearch  {
     width: 100%;
+    margin: 0px;
+    box-sizing: border-box;
 }
