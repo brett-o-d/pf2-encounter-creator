@@ -1,3 +1,7 @@
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import '../global.css';
 
 function Filters(props) {
@@ -33,13 +37,19 @@ function Filters(props) {
     }
 
     return (
-        <form onSubmit={(event) => handleSubmit(event)} className="fullHeightScroll">
-            <div id="filters">
-                <p id="title">Filters</p><br id="br-title"/>
-                {checkboxes}
-            </div>
-                
-        </form>
+        <div className="filters">
+            <p id="title">Filters</p><br id="br-title"/>
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    Monster Level
+                </AccordionSummary>
+                <AccordionDetails>
+                    <form onSubmit={(event) => handleSubmit(event)}>
+                        {checkboxes}
+                    </form>
+                </AccordionDetails>
+            </Accordion>
+        </div>
     )
 }
 

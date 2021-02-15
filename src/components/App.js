@@ -4,10 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MonsterList from './MonsterList';
 import Filters from './Filters';
 import EncounterOptions from './EncounterOptions'
@@ -26,13 +22,19 @@ function App() {
   const [encounterList, setEncounterList] = useState([]);
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
 
-  const drawerWidth = 50;
+  const drawerWidth = '175px';
   const filterIconHeight = 50;
 
   const useStyles = makeStyles((theme) => ({
+    drawer: {
+      [theme.breakpoints.up('sm')]: {
+        width: drawerWidth,
+        flexShrink: 0,
+      },
+    },
     table: {
       [theme.breakpoints.up('sm')]: {
-        width: `calc(100% - ${drawerWidth}px)`,
+        width: `calc(100% - ${drawerWidth})`,
         marginLeft: drawerWidth,
       },
     },
@@ -46,7 +48,6 @@ function App() {
   const classes = useStyles();
 
   const filterDrawerToggle = (event, open) => {
-    console.log("Why?");
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
@@ -78,35 +79,19 @@ function App() {
 
   return (
     <div>
-      <nav>
+      <nav className={classes.drawer}>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
-          <SwipeableDrawer anchor= "left"
-            open={filterDrawerOpen}
+          <SwipeableDrawer anchor= "left" open={filterDrawerOpen} swipeAreaWidth={60}
             onClose={(event) => filterDrawerToggle(event, false)}
             onOpen={(event) => filterDrawerToggle(event, true)}
-            ModalProps={{keepMounted: true,}}// Better open performance on mobile.
-          >
-            <Accordion>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                Monster Level
-              </AccordionSummary>
-              <AccordionDetails>
-                <Filters filter={filter} setFilter={setFilter}/>
-              </AccordionDetails>
-            </Accordion>
+            ModalProps={{keepMounted: true,}}> {/* Better open performance on mobile. */}
+            <Filters filter={filter} setFilter={setFilter}/>
           </SwipeableDrawer>
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer variant="permanent" open>
-            <Accordion>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                Monster Level
-              </AccordionSummary>
-              <AccordionDetails>
-                <Filters filter={filter} setFilter={setFilter}/>
-              </AccordionDetails>
-            </Accordion>
+            <Filters filter={filter} setFilter={setFilter}/>
           </Drawer>
         </Hidden>
       </nav>
