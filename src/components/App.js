@@ -18,7 +18,8 @@ function App() {
   const [searchMonstersFilter, setSearchMonstersFilter] = useState("");
   const [usePartyLevelAsFilter, setUsePartyLevelAsFilter] = useState(false);
   const [useXPAsFilter, setUseXPAsFilter] = useState(false);
-  const [filter, setFilter] = useState([]);
+  const [levelFilter, setLevelFilter] = useState([]);
+  const [typeFilter, setTypeFilter] = useState([]);
   const [encounterList, setEncounterList] = useState([]);
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
 
@@ -86,12 +87,12 @@ function App() {
             onClose={(event) => filterDrawerToggle(event, false)}
             onOpen={(event) => filterDrawerToggle(event, true)}
             ModalProps={{keepMounted: true,}}> {/* Better open performance on mobile. */}
-            <Filters filter={filter} setFilter={setFilter}/>
+            <Filters levelFilter={levelFilter} setLevelFilter={setLevelFilter} typeFilter={typeFilter} setTypeFilter={setTypeFilter}/>
           </SwipeableDrawer>
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer variant="permanent" open>
-            <Filters filter={filter} setFilter={setFilter}/>
+            <Filters levelFilter={levelFilter} setLevelFilter={setLevelFilter} typeFilter={typeFilter} setTypeFilter={setTypeFilter}/>
           </Drawer>
         </Hidden>
       </nav>
@@ -110,7 +111,7 @@ function App() {
             </td>
             <td>
               <MonsterList searchMonstersFilter={searchMonstersFilter} setSearchMonstersFilter={setSearchMonstersFilter}
-                filter={filter} partyLevel={partyLevel} usePartyLevelAsFilter={usePartyLevelAsFilter} 
+                levelFilter={levelFilter} typeFilter={typeFilter} partyLevel={partyLevel} usePartyLevelAsFilter={usePartyLevelAsFilter} 
                 useXPAsFilter={useXPAsFilter} remainingXP={remainingXP} AddtoEncounterList={AddtoEncounterList}/>
             </td>
           </tr>

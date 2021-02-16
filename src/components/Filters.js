@@ -6,17 +6,39 @@ import '../global.css';
 
 function Filters(props) {
 
-    const filter = props.filter;
-    const setFilter = props.setFilter;
+    const levelFilter = props.levelFilter;
+    const setLevelFilter = props.setLevelFilter;
+    const typeFilter = props.typeFilter;
+    const setTypeFilter = props.setTypeFilter;
 
-    const handleFilterChanged = (event) => {
+    const MonsterTypes = ["Aberration", "Animal", "Astral", "Beast", "Celestial", "Construct", "Dragon",
+                          "Dream", "Elemental", "Ethereal", "Fey", "Fiend", "Fungus", "Giant", "Humanoid", 
+                          "Monitor", "Negative", "Ooze", "Petitioner", "Plant", "Positive", "Spirit", "Time", "Undead"]
+
+    const alignments = ["Lawful Good", "Neutral Good", "Chaotic Good", 
+                        "Lawful Neutral", "Neutral", "Chaotic Neutral", 
+                        "Lawful Evil", "Neutral Evil", "Chaotic Evil"]
+
+    const handleLevelFilterChanged = (event) => {
         if (event.target.checked){
-            const newFilter = filter.concat(event.target.value);
-            setFilter(newFilter);
+            const newFilter = levelFilter.concat(event.target.value);
+            setLevelFilter(newFilter);
         }
         else {
-            const newFilter = filter.filter(filters => filters !== event.target.value);    
-            setFilter(newFilter);
+            const newFilter = levelFilter.filter(filters => filters !== event.target.value);    
+            setLevelFilter(newFilter);
+        }
+    }
+
+    const handleTypeFilterChanged = (event) => {
+        if (event.target.checked){
+            console.log(event.target.value);
+            const newFilter = typeFilter.concat(event.target.value);
+            setTypeFilter(newFilter);
+        }
+        else {
+            const newFilter = typeFilter.filter(filters => filters !== event.target.value);    
+            setTypeFilter(newFilter);
         }
     }
     
@@ -25,16 +47,26 @@ function Filters(props) {
         event.preventDefault();
     }
 
-    const checkboxes = new Array(26);
+    const monsterLevelFilterList = new Array(26);
     for (let index = -1; index <= 25; index++) {
-        checkboxes[index + 1] = (
-            <div key={"div-filter" + index}>
-                <input type="checkbox" id={"input-filter" + index} name="levelFilter" value={index} onChange={(event) => handleFilterChanged(event)}/>
-                <label htmlFor={"input-filter" + index}>{index}</label> <br/>
+        monsterLevelFilterList[index + 1] = (
+            <div key={"div-level-filter-" + index}>
+                <input type="checkbox" id={"level-filter-" + index} name="levelFilter" value={index} onChange={(event) => handleLevelFilterChanged(event)}/>
+                <label htmlFor={"level-filter-" + index}>{index}</label> <br/>
             </div>
         )
-        
     }
+
+    const monsterTypeFilterList = new Array(24);
+    var typeIndex = 0;
+    MonsterTypes.forEach(type => {
+        monsterTypeFilterList[typeIndex++] = (
+            <div key={"div-type-filter-" + type}>
+                <input type="checkbox" id={"type-filter-" + type} name="typeFilter" value={type} onChange={(event) => handleTypeFilterChanged(event)}/>
+                <label htmlFor={"type-filter-" + type}>{type}</label> <br/>
+            </div>
+        )
+    });
 
     return (
         <div className="filters">
@@ -45,7 +77,17 @@ function Filters(props) {
                 </AccordionSummary>
                 <AccordionDetails>
                     <form onSubmit={(event) => handleSubmit(event)}>
-                        {checkboxes}
+                        {monsterLevelFilterList}
+                    </form>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    Monster Type
+                </AccordionSummary>
+                <AccordionDetails>
+                    <form onSubmit={(event) => handleSubmit(event)}>
+                        {monsterTypeFilterList}
                     </form>
                 </AccordionDetails>
             </Accordion>
