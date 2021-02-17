@@ -20,6 +20,7 @@ function App() {
   const [useXPAsFilter, setUseXPAsFilter] = useState(false);
   const [levelFilter, setLevelFilter] = useState([]);
   const [typeFilter, setTypeFilter] = useState([]);
+  const [alignmentFilter, setAlignmentFilter] = useState([]);
   const [encounterList, setEncounterList] = useState([]);
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
 
@@ -87,12 +88,14 @@ function App() {
             onClose={(event) => filterDrawerToggle(event, false)}
             onOpen={(event) => filterDrawerToggle(event, true)}
             ModalProps={{keepMounted: true,}}> {/* Better open performance on mobile. */}
-            <Filters levelFilter={levelFilter} setLevelFilter={setLevelFilter} typeFilter={typeFilter} setTypeFilter={setTypeFilter}/>
+            <Filters device="mobile" levelFilter={levelFilter} setLevelFilter={setLevelFilter} typeFilter={typeFilter} setTypeFilter={setTypeFilter}
+              alignmentFilter={alignmentFilter} setAlignmentFilter={setAlignmentFilter}/>
           </SwipeableDrawer>
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer variant="permanent" open>
-            <Filters levelFilter={levelFilter} setLevelFilter={setLevelFilter} typeFilter={typeFilter} setTypeFilter={setTypeFilter}/>
+            <Filters device="desktop" levelFilter={levelFilter} setLevelFilter={setLevelFilter} typeFilter={typeFilter} setTypeFilter={setTypeFilter}
+              alignmentFilter={alignmentFilter} setAlignmentFilter={setAlignmentFilter}/>
           </Drawer>
         </Hidden>
       </nav>
@@ -111,7 +114,8 @@ function App() {
             </td>
             <td>
               <MonsterList searchMonstersFilter={searchMonstersFilter} setSearchMonstersFilter={setSearchMonstersFilter}
-                levelFilter={levelFilter} typeFilter={typeFilter} partyLevel={partyLevel} usePartyLevelAsFilter={usePartyLevelAsFilter} 
+                levelFilter={levelFilter} typeFilter={typeFilter} alignmentFilter={alignmentFilter} 
+                partyLevel={partyLevel} usePartyLevelAsFilter={usePartyLevelAsFilter} 
                 useXPAsFilter={useXPAsFilter} remainingXP={remainingXP} AddtoEncounterList={AddtoEncounterList}/>
             </td>
           </tr>
