@@ -69,14 +69,14 @@ function EncounterOptions(props) {
         <form onSubmit={(event) => handleSubmit(event)}>
             <div className="center" id="partyLevel">
                 <label htmlFor="partyLevel">Party Level</label>
-                <input id="partyLevel" value={partyLevel} onChange={(event) => partyLevelChanged(event)} type="number" min={minPartyLevel} max={maxPartyLevel}/>
+                <input id="partyLevel" className="numberInput" value={partyLevel} onChange={(event) => partyLevelChanged(event)} type="number" min={minPartyLevel} max={maxPartyLevel}/>
                 <label htmlFor="useAsLevelFilter">Use as Filter: (&#177;4 levels)</label>
                 <input type="checkbox" id="useAsLevelFilter"  onChange={(event) => togglePartyLevelAsFilter(event)}/>
             </div>
             <br/>
             <div className="center" id="partyCount">
                 <label htmlFor="partyCount">Number of Characters</label>
-                <input id="partyCount" value={partyCount} onChange={(event) => partyCountChanged(event)} type="number" min={minPartyCount} max={maxPartyCount}/>
+                <input id="partyCount" className="numberInput" value={partyCount} onChange={(event) => partyCountChanged(event)} type="number" min={minPartyCount} max={maxPartyCount}/>
             </div>
             <br/>
             <div className="center" id="difficulty">

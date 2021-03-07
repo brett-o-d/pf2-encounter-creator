@@ -10,8 +10,8 @@ img {
     border: 0px;
 }
 
-input {
-    min-width: 40px;
+.numberInput {
+    min-width: 30px;
 }
 
 .center {
