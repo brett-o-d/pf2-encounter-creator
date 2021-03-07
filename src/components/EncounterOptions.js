@@ -11,7 +11,7 @@ function EncounterOptions(props) {
     const minPartyLevel = 0;
     const maxPartyLevel = 29;
     
-    const minPartyCount = 1;
+    const minPartyCount = 0;
     const maxPartyCount = 8;
 
     const partyLevelChanged = (event) => {
@@ -31,6 +31,7 @@ function EncounterOptions(props) {
 
     const partyCountChanged = (event) => {
         const value = event.target.value;
+        console.log(value);
         if (partyCount !== value){
             if (value >= minPartyCount && value <= maxPartyCount){
                 setPartyCount(value);
@@ -69,8 +70,8 @@ function EncounterOptions(props) {
             <div className="center" id="partyLevel">
                 <label htmlFor="partyLevel">Party Level</label>
                 <input id="partyLevel" value={partyLevel} onChange={(event) => partyLevelChanged(event)} type="number" min={minPartyLevel} max={maxPartyLevel}/>
-                <label htmlFor="useAsFilter">Use as Filter: (&#177;4 levels)</label>
-                <input type="checkbox" id="useAsFilter"  onChange={(event) => togglePartyLevelAsFilter(event)}/>
+                <label htmlFor="useAsLevelFilter">Use as Filter: (&#177;4 levels)</label>
+                <input type="checkbox" id="useAsLevelFilter"  onChange={(event) => togglePartyLevelAsFilter(event)}/>
             </div>
             <br/>
             <div className="center" id="partyCount">
@@ -90,8 +91,8 @@ function EncounterOptions(props) {
                 <label htmlFor="severe">Severe</label>
                 <input id="extreme" type="radio" name="difficulty" onChange={(event) => difficultyChanged(event)}/>
                 <label htmlFor="extreme">Extreme</label> <br/>
-                <label htmlFor="useAsFilter">Use remaining XP as Filter: </label>
-                <input type="checkbox" id="useAsFilter"  onChange={(event) => toggleXPAsFilter(event)}/> 
+                <label htmlFor="useAsXPFilter">Use remaining XP as Filter: </label>
+                <input type="checkbox" id="useAsXPFilter"  onChange={(event) => toggleXPAsFilter(event)}/> 
             </div>
         </form>
     )

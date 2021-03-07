@@ -10,6 +10,10 @@ img {
     border: 0px;
 }
 
+input {
+    min-width: 40px;
+}
+
 .center {
     text-align: center;
 }
@@ -27,4 +31,10 @@ img {
 
 .filters {
     width: 175px;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }

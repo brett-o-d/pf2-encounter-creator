@@ -10,6 +10,7 @@ import season2Bestiary from '../bestiaries/pfs-season-2-bestiary.json'
 import slitheringBestiary from '../bestiaries/the-slithering-bestiary.json'
 import troublesInOtariBestiary from '../bestiaries/troubles-in-otari-bestiary.json';
 import { MonsterXP } from "./Constants";
+import { makeStyles } from '@material-ui/core/styles';
 import '../global.css';
 import './css/MonsterList.css';
 
@@ -24,6 +25,18 @@ function MonsterList(props) {
     const useXPAsFilter = props.useXPAsFilter;
     const remainingXP = props.remainingXP;
     const AddtoEncounterList = props.AddtoEncounterList;
+
+    const useStyles = makeStyles((theme) => ({
+        rightAlignOrFill: {
+            [theme.breakpoints.down('sm')]: {
+                width: '100%',
+                lineHeight: '120%'
+            },
+        },
+    }));
+
+      
+    const classes = useStyles();
 
     function IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP){
         //Monster Type
@@ -55,8 +68,23 @@ function MonsterList(props) {
         setSearchMonstersFilter(event.target.value);
     }
 
-    const AddToEncounter = (event, monster) => {
+    const AddToEncounter = (monster) => {
         AddtoEncounterList(monster);
+    }
+
+    function MonsterLayoutBuilder(monster, monsterLevel, monsterXP){
+        return <li name={monster.name} key={monster._id} level={monsterLevel} monsterxp={monsterXP}>
+            <div className="flex-container">
+                <div>
+                    Name: {monster.name} <br/>
+                    Level: {monsterLevel} XP: {monsterXP}
+                </div>
+                <div className={classes.rightAlignOrFill}>
+                    <button onClick={() => AddToEncounter(monster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
+                    <a href={monster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a>
+                </div>
+            </div>
+        </li>            
     }
 
     var rows = [];
@@ -66,141 +94,107 @@ function MonsterList(props) {
     //     const monsterAlignment = ashesMonster.data.details.alignment.value;
     // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
     //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-    //         rows.push(<li name={ashesMonster.name} key={ashesMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-    //             Name: {ashesMonster.name} 
-    //             <button onClick={(event) => AddToEncounter(event, ashesMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}
-                // <a href={ashesMonster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>)
+            // rows.push(MonsterLayoutBuilder(ashesMonster, monsterLevel, monsterXP));
     //     }
     // });
+
     // edgewatchBestiary.forEach((edgewatchMonster) => {
     //     const monsterLevel = edgewatchMonster.data.details.level.value;
         // const monsterType = edgewatchMonster.data.details.creatureType;
     //     const monsterAlignment = edgewatchMonster.data.details.alignment.value;
     // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
     //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-    //         rows.push(<li name={edgewatchMonster.name} key={edgewatchMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-    //             Name: {edgewatchMonster.name} 
-    //             <button onClick={(event) => AddToEncounter(event, edgewatchMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}
-                // <a href={edgewatchMonster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>)
+            // rows.push(MonsterLayoutBuilder(edgewatchMonster, monsterLevel, monsterXP));
     //     }
     // });
+
     // extinctionCurseBestiary.forEach((extinctionCurseMonster) => {
     //     const monsterLevel = extinctionCurseMonster.data.details.level.value;
         // const monsterType = extinctionCurseMonster.data.details.creatureType;
     //     const monsterAlignment = extinctionCurseMonster.data.details.alignment.value;
     // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
     //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-    //         rows.push(<li name={extinctionCurseMonster.name} key={extinctionCurseMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-    //             Name: {extinctionCurseMonster.name}
-    //             <button onClick={(event) => AddToEncounter(event, extinctionCurseMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}
-                // <a href={extinctionCurseMonster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>)
+            // rows.push(MonsterLayoutBuilder(extinctionCurseMonster, monsterLevel, monsterXP));
     //     }
     // });
+
     // plaguestoneBestiary.forEach((plaguestoneMonster) => {
     //     const monsterLevel = plaguestoneMonster.data.details.level.value;
         // const monsterType = plaguestoneMonster.data.details.creatureType;
     //     const monsterAlignment = plaguestoneMonster.data.details.alignment.value;
     // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
     //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-    //         rows.push(<li name={plaguestoneMonster.name} key={plaguestoneMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-    //             Name: {plaguestoneMonster.name}
-    //             <button onClick={(event) => AddToEncounter(event, plaguestoneMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}
-                // <a href={plaguestoneMonster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>)
+            // rows.push(MonsterLayoutBuilder(plaguestoneMonster, monsterLevel, monsterXP));
     //     }
     // });
+
     // menaceUnderOtariBestiary.forEach((menaceUnderOtariMonster) => {
     //     const monsterLevel = menaceUnderOtariMonster.data.details.level.value;
         // const monsterType = menaceUnderOtariMonster.data.details.creatureType;
     //     const monsterAlignment = menaceUnderOtariMonster.data.details.alignment.value;
     // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
     //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-    //         rows.push(<li name={menaceUnderOtariMonster.name} key={menaceUnderOtariMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-    //             Name: {menaceUnderOtariMonster.name}
-    //             <button onClick={(event) => AddToEncounter(event, menaceUnderOtariMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}
-                // <a href={menaceUnderOtariMonster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>)
+            // rows.push(MonsterLayoutBuilder(menaceUnderOtariMonster, monsterLevel, monsterXP));
     //     }
     // });
+
     pathfinderBestiary.forEach((pathfinderMonster) => {
         const monsterLevel = pathfinderMonster.data.details.level.value;
         const monsterType = pathfinderMonster.data.details.creatureType;
         const monsterAlignment = pathfinderMonster.data.details.alignment.value;
         const monsterXP = MonsterXP[monsterLevel - partyLevel];
         if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            rows.push(<li name={pathfinderMonster.name} key={pathfinderMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-                Name: {pathfinderMonster.name}
-                <button onClick={(event) => AddToEncounter(event, pathfinderMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}
-                <a href={pathfinderMonster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>)
+            rows.push(MonsterLayoutBuilder(pathfinderMonster, monsterLevel, monsterXP));
         }
     });
+
     pathfinderBestiary2.forEach((pathfinderMonster2) => {
         const monsterLevel = pathfinderMonster2.data.details.level.value;
         const monsterType = pathfinderMonster2.data.details.creatureType;
         const monsterAlignment = pathfinderMonster2.data.details.alignment.value;
         const monsterXP = MonsterXP[monsterLevel - partyLevel];
         if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            rows.push(<li name={pathfinderMonster2.name} key={pathfinderMonster2._id} level={monsterLevel} monsterxp={monsterXP}>
-                Name: {pathfinderMonster2.name}
-                <button onClick={(event) => AddToEncounter(event, pathfinderMonster2)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                Level: {monsterLevel} XP: {monsterXP}
-                <a href={pathfinderMonster2.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>)
+            rows.push(MonsterLayoutBuilder(pathfinderMonster2, monsterLevel, monsterXP));
         }
     });
+
     // season1Bestiary.forEach((season1Monster) => {
     //     const monsterLevel = season1Monster.data.details.level.value;
         // const monsterType = season1Monster.data.details.creatureType;
     //     const monsterAlignment = season1Monster.data.details.alignment.value;
     // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
     //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-    //         rows.push(<li name={season1Monster.name} key={season1Monster._id} level={monsterLevel} monsterxp={monsterXP}>
-    //             Name: {season1Monster.name}
-    //             <button onClick={(event) => AddToEncounter(event, season1Monster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                // Level: {monsterLevel} XP: {monsterXP}
-                // <a href={season1Monster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>)
+            // rows.push(MonsterLayoutBuilder(season1Monster, monsterLevel, monsterXP));
     //     }
     // });
+
     // season2Bestiary.forEach((season2Monster) => {
     //     const monsterLevel = season2Monster.data.details.level.value;
         // const monsterType = season2Monster.data.details.creatureType;
     //     const monsterAlignment = season2Monster.data.details.alignment.value;
     // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
     //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-    //         rows.push(<li name={season2Monster.name} key={season2Monster._id} level={monsterLevel} monsterxp={monsterXP}>
-    //             Name: {season2Monster.name}
-    //             <button onClick={(event) => AddToEncounter(event, season2Monster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}
-                // <a href={season2Monster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>)
+            // rows.push(MonsterLayoutBuilder(season2Monster, monsterLevel, monsterXP));
     //     }
     // });
+
     // slitheringBestiary.forEach((slitheringMonster) => {
     //     const monsterLevel = slitheringMonster.data.details.level.value;
         // const monsterType = slitheringMonster.data.details.creatureType;
     //     const monsterAlignment = slitheringMonster.data.details.alignment.value;
     // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
     //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-    //         rows.push(<li name={slitheringMonster.name} key={slitheringMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-    //             Name: {slitheringMonster.name}
-    //             <button onClick={(event) => AddToEncounter(event, slitheringMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}
-                // <a href={slitheringMonster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>)
+            // rows.push(MonsterLayoutBuilder(slitheringMonster, monsterLevel, monsterXP));
     //     }
     // });
+
     // troublesInOtariBestiary.forEach((troublesInOtariMonster) => {
     //     const monsterLevel = troublesInOtariMonster.data.details.level.value;
         // const monsterType = troublesInOtariMonster.data.details.creatureType;
     //     const monsterAlignment = troublesInOtariMonster.data.details.alignment.value;
     // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
     //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-    //         rows.push(<li name={troublesInOtariMonster.name} key={troublesInOtariMonster._id} level={monsterLevel} monsterxp={monsterXP}>
-    //             Name: {troublesInOtariMonster.name} 
-    //             <button onClick={(event) => AddToEncounter(event, troublesInOtariMonster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-    //             Level: {monsterLevel} XP: {monsterXP}
-                // <a href={troublesInOtariMonster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>)
+            // rows.push(MonsterLayoutBuilder(troublesInOtariMonster, monsterLevel, monsterXP));
     //     }
     // });
     

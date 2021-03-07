@@ -83,7 +83,7 @@ function App() {
     <div>
       <nav className={classes.drawer}>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
+        <Hidden smUp>
           <SwipeableDrawer anchor= "left" open={filterDrawerOpen}
             onClose={(event) => filterDrawerToggle(event, false)}
             onOpen={(event) => filterDrawerToggle(event, true)}
@@ -92,22 +92,29 @@ function App() {
               alignmentFilter={alignmentFilter} setAlignmentFilter={setAlignmentFilter}/>
           </SwipeableDrawer>
         </Hidden>
-        <Hidden xsDown implementation="css">
+        <Hidden xsDown>
           <Drawer variant="permanent" open>
             <Filters device="desktop" levelFilter={levelFilter} setLevelFilter={setLevelFilter} typeFilter={typeFilter} setTypeFilter={setTypeFilter}
               alignmentFilter={alignmentFilter} setAlignmentFilter={setAlignmentFilter}/>
           </Drawer>
         </Hidden>
       </nav>
+      <Hidden smUp>        
+        <img className={classes.filterIcon + " icon"} src={filterIcon} alt="filter" onClick={(event) => {filterDrawerToggle(event, true); event.stopPropagation()}}/>
+        <EncounterOptions partyLevel={partyLevel} setPartyLevel={setPartyLevel}
+          partyCount={partyCount} setPartyCount={setPartyCount} setDifficulty={setDifficulty}
+          setUsePartyLevelAsFilter={setUsePartyLevelAsFilter} setUseXPAsFilter={setUseXPAsFilter}/> <br/>
+      </Hidden>
       <table className={classes.table} onClick={(event) => filterDrawerToggle(event, false)} onKeyDown={(event) => filterDrawerToggle(event, false)}>
         <tbody>
-          <tr>
-            <td className="fullHeightScroll" style={{verticalAlign:"top"}}>
-              <img className={classes.filterIcon + " icon"} src={filterIcon} alt="filter" onClick={(event) => {filterDrawerToggle(event, true); event.stopPropagation()}}/>
+          <tr> 
+            <td className="fullHeightScroll" style={{verticalAlign:"top", minWidth:"160px"}}>
               <div style={{height: `calc(100% - ${filterIconHeight}px)`}}>
-                <EncounterOptions partyLevel={partyLevel} setPartyLevel={setPartyLevel}
-                  partyCount={partyCount} setPartyCount={setPartyCount} setDifficulty={setDifficulty}
-                  setUsePartyLevelAsFilter={setUsePartyLevelAsFilter} setUseXPAsFilter={setUseXPAsFilter}/> <br/>
+                <Hidden xsDown>
+                  <EncounterOptions partyLevel={partyLevel} setPartyLevel={setPartyLevel}
+                    partyCount={partyCount} setPartyCount={setPartyCount} setDifficulty={setDifficulty}
+                    setUsePartyLevelAsFilter={setUsePartyLevelAsFilter} setUseXPAsFilter={setUseXPAsFilter}/> <br/>
+                </Hidden>
                 <Encounter remainingXP={remainingXP} encounterList={encounterList} partyLevel={partyLevel} encounterXP={encounterXP}
                   RemoveFromEncounterList={RemoveFromEncounterList}/>
               </div>
