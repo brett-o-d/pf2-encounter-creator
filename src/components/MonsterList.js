@@ -20,6 +20,8 @@ function MonsterList(props) {
     const levelFilter = props.levelFilter;
     const typeFilter = props.typeFilter;
     const alignmentFilter = props.alignmentFilter;
+    const sizeFilter = props.sizeFilter;
+    const traitFilter = props.traitFilter;
     const partyLevel = props.partyLevel;
     const usePartyLevelAsFilter = props.usePartyLevelAsFilter;
     const useXPAsFilter = props.useXPAsFilter;
@@ -30,7 +32,7 @@ function MonsterList(props) {
         rightAlignOrFill: {
             [theme.breakpoints.down('sm')]: {
                 width: '100%',
-                lineHeight: '120%'
+                lineHeight: '140%'
             },
         },
     }));
@@ -38,7 +40,7 @@ function MonsterList(props) {
       
     const classes = useStyles();
 
-    function IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP){
+    function IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterSize, monsterTraits, monsterXP){
         //Monster Type
         if (typeFilter.length !== 0 && !typeFilter.includes(monsterType)){
             return false;
@@ -47,6 +49,25 @@ function MonsterList(props) {
         //Alignment
         if (alignmentFilter.length !== 0 && !alignmentFilter.includes(monsterAlignment)){
             return false;
+        }
+
+        //Size
+        if (sizeFilter.length !== 0 && !sizeFilter.includes(monsterSize)){
+            return false;
+        }
+
+        //Trait
+        var hasTrait = false;
+        if (traitFilter.length !== 0){
+            monsterTraits.forEach(trait => {
+                if (traitFilter.map(filter => filter.toLowerCase()).includes(trait)){
+                    hasTrait = true;
+                    return;
+                }
+            });
+            if (!hasTrait){                
+                return false;
+            }
         }
 
         //Monster Level 
@@ -72,6 +93,20 @@ function MonsterList(props) {
         AddtoEncounterList(monster);
     }
 
+    function BestiaryParser(bestiary){
+        bestiary.forEach((monster) => {
+            const monsterLevel = monster.data.details.level.value;
+            const monsterType = monster.data.details.creatureType;
+            const monsterAlignment = monster.data.details.alignment?.value;
+            const monsterSize = monster.data.traits.size?.value;
+            const monsterTraits = monster.data.traits.traits?.value;
+            const monsterXP = MonsterXP[monsterLevel - partyLevel];
+            if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterSize, monsterTraits, monsterXP) ) {
+                rows.push(MonsterLayoutBuilder(monster, monsterLevel, monsterXP));
+            }
+        });
+    }
+
     function MonsterLayoutBuilder(monster, monsterLevel, monsterXP){
         return <li name={monster.name} key={monster._id} level={monsterLevel} monsterxp={monsterXP}>
             <div className="flex-container">
@@ -88,115 +123,19 @@ function MonsterList(props) {
     }
 
     var rows = [];
-    // ashesBestiary.forEach((ashesMonster) => {        
-    //     const monsterLevel = ashesMonster.data.details.level.value;
-        // const monsterType = ashesMonster.data.details.creatureType;
-    //     const monsterAlignment = ashesMonster.data.details.alignment.value;
-    // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
-    //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            // rows.push(MonsterLayoutBuilder(ashesMonster, monsterLevel, monsterXP));
-    //     }
-    // });
 
-    // edgewatchBestiary.forEach((edgewatchMonster) => {
-    //     const monsterLevel = edgewatchMonster.data.details.level.value;
-        // const monsterType = edgewatchMonster.data.details.creatureType;
-    //     const monsterAlignment = edgewatchMonster.data.details.alignment.value;
-    // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
-    //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            // rows.push(MonsterLayoutBuilder(edgewatchMonster, monsterLevel, monsterXP));
-    //     }
-    // });
+    BestiaryParser(pathfinderBestiary);
+    BestiaryParser(pathfinderBestiary2);
 
-    // extinctionCurseBestiary.forEach((extinctionCurseMonster) => {
-    //     const monsterLevel = extinctionCurseMonster.data.details.level.value;
-        // const monsterType = extinctionCurseMonster.data.details.creatureType;
-    //     const monsterAlignment = extinctionCurseMonster.data.details.alignment.value;
-    // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
-    //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            // rows.push(MonsterLayoutBuilder(extinctionCurseMonster, monsterLevel, monsterXP));
-    //     }
-    // });
-
-    // plaguestoneBestiary.forEach((plaguestoneMonster) => {
-    //     const monsterLevel = plaguestoneMonster.data.details.level.value;
-        // const monsterType = plaguestoneMonster.data.details.creatureType;
-    //     const monsterAlignment = plaguestoneMonster.data.details.alignment.value;
-    // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
-    //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            // rows.push(MonsterLayoutBuilder(plaguestoneMonster, monsterLevel, monsterXP));
-    //     }
-    // });
-
-    // menaceUnderOtariBestiary.forEach((menaceUnderOtariMonster) => {
-    //     const monsterLevel = menaceUnderOtariMonster.data.details.level.value;
-        // const monsterType = menaceUnderOtariMonster.data.details.creatureType;
-    //     const monsterAlignment = menaceUnderOtariMonster.data.details.alignment.value;
-    // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
-    //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            // rows.push(MonsterLayoutBuilder(menaceUnderOtariMonster, monsterLevel, monsterXP));
-    //     }
-    // });
-
-    pathfinderBestiary.forEach((pathfinderMonster) => {
-        const monsterLevel = pathfinderMonster.data.details.level.value;
-        const monsterType = pathfinderMonster.data.details.creatureType;
-        const monsterAlignment = pathfinderMonster.data.details.alignment.value;
-        const monsterXP = MonsterXP[monsterLevel - partyLevel];
-        if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            rows.push(MonsterLayoutBuilder(pathfinderMonster, monsterLevel, monsterXP));
-        }
-    });
-
-    pathfinderBestiary2.forEach((pathfinderMonster2) => {
-        const monsterLevel = pathfinderMonster2.data.details.level.value;
-        const monsterType = pathfinderMonster2.data.details.creatureType;
-        const monsterAlignment = pathfinderMonster2.data.details.alignment.value;
-        const monsterXP = MonsterXP[monsterLevel - partyLevel];
-        if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            rows.push(MonsterLayoutBuilder(pathfinderMonster2, monsterLevel, monsterXP));
-        }
-    });
-
-    // season1Bestiary.forEach((season1Monster) => {
-    //     const monsterLevel = season1Monster.data.details.level.value;
-        // const monsterType = season1Monster.data.details.creatureType;
-    //     const monsterAlignment = season1Monster.data.details.alignment.value;
-    // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
-    //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            // rows.push(MonsterLayoutBuilder(season1Monster, monsterLevel, monsterXP));
-    //     }
-    // });
-
-    // season2Bestiary.forEach((season2Monster) => {
-    //     const monsterLevel = season2Monster.data.details.level.value;
-        // const monsterType = season2Monster.data.details.creatureType;
-    //     const monsterAlignment = season2Monster.data.details.alignment.value;
-    // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
-    //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            // rows.push(MonsterLayoutBuilder(season2Monster, monsterLevel, monsterXP));
-    //     }
-    // });
-
-    // slitheringBestiary.forEach((slitheringMonster) => {
-    //     const monsterLevel = slitheringMonster.data.details.level.value;
-        // const monsterType = slitheringMonster.data.details.creatureType;
-    //     const monsterAlignment = slitheringMonster.data.details.alignment.value;
-    // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
-    //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            // rows.push(MonsterLayoutBuilder(slitheringMonster, monsterLevel, monsterXP));
-    //     }
-    // });
-
-    // troublesInOtariBestiary.forEach((troublesInOtariMonster) => {
-    //     const monsterLevel = troublesInOtariMonster.data.details.level.value;
-        // const monsterType = troublesInOtariMonster.data.details.creatureType;
-    //     const monsterAlignment = troublesInOtariMonster.data.details.alignment.value;
-    // //     const monsterXP = MonsterXP[monsterLevel - partyLevel];
-    //     if ( IsInFilter(monsterLevel, monsterType, monsterAlignment, monsterXP) ) {
-            // rows.push(MonsterLayoutBuilder(troublesInOtariMonster, monsterLevel, monsterXP));
-    //     }
-    // });
+    // BestiaryParser(ashesBestiary);
+    // BestiaryParser(edgewatchBestiary);
+    // BestiaryParser(extinctionCurseBestiary);
+    // BestiaryParser(plaguestoneBestiary);
+    // BestiaryParser(menaceUnderOtariBestiary);
+    // BestiaryParser(season1Bestiary);
+    // BestiaryParser(season2Bestiary);
+    // BestiaryParser(slitheringBestiary);
+    // BestiaryParser(troublesInOtariBestiary);
     
     rows.sort(compareMonsters);
     

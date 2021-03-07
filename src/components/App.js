@@ -21,6 +21,8 @@ function App() {
   const [levelFilter, setLevelFilter] = useState([]);
   const [typeFilter, setTypeFilter] = useState([]);
   const [alignmentFilter, setAlignmentFilter] = useState([]);
+  const [sizeFilter, setSizeFilter] = useState([]);
+  const [traitFilter, setTraitFilter] = useState([]);
   const [encounterList, setEncounterList] = useState([]);
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
 
@@ -89,13 +91,15 @@ function App() {
             onOpen={(event) => filterDrawerToggle(event, true)}
             ModalProps={{keepMounted: true,}}> {/* Better open performance on mobile. */}
             <Filters device="mobile" levelFilter={levelFilter} setLevelFilter={setLevelFilter} typeFilter={typeFilter} setTypeFilter={setTypeFilter}
-              alignmentFilter={alignmentFilter} setAlignmentFilter={setAlignmentFilter}/>
+              alignmentFilter={alignmentFilter} setAlignmentFilter={setAlignmentFilter} sizeFilter={sizeFilter} setSizeFilter={setSizeFilter}
+              traitFilter={traitFilter} setTraitFilter={setTraitFilter}/>
           </SwipeableDrawer>
         </Hidden>
         <Hidden xsDown>
           <Drawer variant="permanent" open>
             <Filters device="desktop" levelFilter={levelFilter} setLevelFilter={setLevelFilter} typeFilter={typeFilter} setTypeFilter={setTypeFilter}
-              alignmentFilter={alignmentFilter} setAlignmentFilter={setAlignmentFilter}/>
+              alignmentFilter={alignmentFilter} setAlignmentFilter={setAlignmentFilter} sizeFilter={sizeFilter} setSizeFilter={setSizeFilter}
+              traitFilter={traitFilter} setTraitFilter={setTraitFilter}/>
           </Drawer>
         </Hidden>
       </nav>
@@ -121,7 +125,7 @@ function App() {
             </td>
             <td>
               <MonsterList searchMonstersFilter={searchMonstersFilter} setSearchMonstersFilter={setSearchMonstersFilter}
-                levelFilter={levelFilter} typeFilter={typeFilter} alignmentFilter={alignmentFilter} 
+                levelFilter={levelFilter} typeFilter={typeFilter} alignmentFilter={alignmentFilter} sizeFilter={sizeFilter} traitFilter={traitFilter}
                 partyLevel={partyLevel} usePartyLevelAsFilter={usePartyLevelAsFilter} 
                 useXPAsFilter={useXPAsFilter} remainingXP={remainingXP} AddtoEncounterList={AddtoEncounterList}/>
             </td>
