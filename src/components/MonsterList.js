@@ -11,6 +11,7 @@ import slitheringBestiary from '../bestiaries/the-slithering-bestiary.json'
 import troublesInOtariBestiary from '../bestiaries/troubles-in-otari-bestiary.json';
 import { MonsterXP } from "./Constants";
 import { makeStyles } from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
 import '../global.css';
 import './css/MonsterList.css';
 
@@ -115,8 +116,13 @@ function MonsterList(props) {
                     Level: {monsterLevel} XP: {monsterXP}
                 </div>
                 <div className={classes.rightAlignOrFill}>
-                    <button onClick={() => AddToEncounter(monster)} style={{float:'right'}}>Add to Encounter</button> <br/> 
-                    <a href={monster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a>
+                    <Hidden smUp>
+                        <a href={monster.data.details.nethysUrl} target="_blank" rel="noreferrer" style={{float:'left'}}>Nethys</a>
+                    </Hidden>
+                    <button onClick={() => AddToEncounter(monster)} style={{float:'right'}}>Add to Encounter</button>
+                    <Hidden xsDown>
+                        <br/><a href={monster.data.details.nethysUrl} target="_blank" rel="noreferrer" style={{float:'right'}}>Nethys</a>
+                    </Hidden> 
                 </div>
             </div>
         </li>            

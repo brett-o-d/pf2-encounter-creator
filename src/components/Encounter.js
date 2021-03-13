@@ -1,10 +1,24 @@
 import { MonsterXP } from './Constants';
+import { makeStyles } from '@material-ui/core/styles';
 
 function Encounter(props) {
     const partyLevel = props.partyLevel;
     const remainingXP = props.remainingXP;
     const encounterList = props.encounterList;
     const RemoveFromEncounterList = props.RemoveFromEncounterList;
+
+    const useStyles = makeStyles((theme) => ({
+        encounterDiv: {
+            [theme.breakpoints.up('sm')]: {
+                margin: '5px',
+            },
+            [theme.breakpoints.down('xs')]: {
+                margin: '5px',
+            },
+        },
+      }));
+
+    const classes = useStyles();
 
     const RemoveFromEncounter = (event) => {
         RemoveFromEncounterList(event.target.id);
@@ -23,7 +37,7 @@ function Encounter(props) {
     });
 
     return (
-        <div><p>Remaining XP: {remainingXP}</p>
+        <div className={classes.encounterDiv}><p>Remaining XP: {remainingXP}</p>
             <ul>
                 {rows}
             </ul>

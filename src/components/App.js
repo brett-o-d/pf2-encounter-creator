@@ -113,7 +113,7 @@ function App() {
         <tbody>
           <tr> 
             <td className="fullHeightScroll" style={{verticalAlign:"top", minWidth:"160px"}}>
-              <div style={{height: `calc(100% - ${filterIconHeight}px)`}}>
+              <div style={{height: `calc(100% - ${filterIconHeight}px) + 10px`}}>
                 <Hidden xsDown>
                   <EncounterOptions partyLevel={partyLevel} setPartyLevel={setPartyLevel}
                     partyCount={partyCount} setPartyCount={setPartyCount} setDifficulty={setDifficulty}

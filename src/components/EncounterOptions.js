@@ -1,3 +1,5 @@
+import { makeStyles } from '@material-ui/core/styles';
+
 function EncounterOptions(props) {
     
     const partyLevel = props.partyLevel;
@@ -13,6 +15,19 @@ function EncounterOptions(props) {
     
     const minPartyCount = 0;
     const maxPartyCount = 8;
+
+    const useStyles = makeStyles((theme) => ({
+        optionsForm: {
+            [theme.breakpoints.up('sm')]: {
+                margin: '5px',
+            },
+            [theme.breakpoints.down('xs')]: {
+                margin: '5px',
+            },
+        },
+      }));
+
+    const classes = useStyles();
 
     const partyLevelChanged = (event) => {
         const value = event.target.value;
@@ -66,7 +81,7 @@ function EncounterOptions(props) {
     }
 
     return (
-        <form onSubmit={(event) => handleSubmit(event)}>
+        <form className={classes.optionsForm} onSubmit={(event) => handleSubmit(event)}>
             <div className="center" id="partyLevel">
                 <label htmlFor="partyLevel">Party Level</label>
                 <input id="partyLevel" className="numberInput" value={partyLevel} onChange={(event) => partyLevelChanged(event)} type="number" min={minPartyLevel} max={maxPartyLevel}/>
