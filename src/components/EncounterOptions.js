@@ -71,7 +71,7 @@ function EncounterOptions(props) {
                 <label htmlFor="partyLevel">Party Level</label>
                 <input id="partyLevel" className="numberInput" value={partyLevel} onChange={(event) => partyLevelChanged(event)} type="number" min={minPartyLevel} max={maxPartyLevel}/>
                 <label htmlFor="useAsLevelFilter">Use as Filter: (&#177;4 levels)</label>
-                <input type="checkbox" id="useAsLevelFilter"  onChange={(event) => togglePartyLevelAsFilter(event)}/>
+                <input type="checkbox" id="useAsLevelFilter" defaultChecked="true"  onChange={(event) => togglePartyLevelAsFilter(event)}/>
             </div>
             <br/>
             <div className="center" id="partyCount">

@@ -16,7 +16,7 @@ function App() {
   const [partyCount, setPartyCount] = useState(4);
   const [difficulty, setDifficulty] = useState("");
   const [searchMonstersFilter, setSearchMonstersFilter] = useState("");
-  const [usePartyLevelAsFilter, setUsePartyLevelAsFilter] = useState(false);
+  const [usePartyLevelAsFilter, setUsePartyLevelAsFilter] = useState(true);
   const [useXPAsFilter, setUseXPAsFilter] = useState(false);
   const [levelFilter, setLevelFilter] = useState([]);
   const [typeFilter, setTypeFilter] = useState([]);
