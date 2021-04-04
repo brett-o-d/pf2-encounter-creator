@@ -171,7 +171,7 @@ function Filters(props) {
 
     return (
         <div className="filters">
-            <p id="title">Filters</p><br id="br-title"/>
+            <h3 style={{textAlign: "center"}} justify="center" id="title">Filters</h3><br id="br-title"/>
             <Accordion>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     Monster Level

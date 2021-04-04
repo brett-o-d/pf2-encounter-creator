@@ -12,7 +12,7 @@ import filterIcon from './assets/filter.png';
 import '../global.css';
 
 function App() {
-  const [partyLevel, setPartyLevel] = useState(0);
+  const [partyLevel, setPartyLevel] = useState(1);
   const [partyCount, setPartyCount] = useState(4);
   const [difficulty, setDifficulty] = useState("");
   const [searchMonstersFilter, setSearchMonstersFilter] = useState("");
