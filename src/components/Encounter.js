@@ -33,7 +33,7 @@ function Encounter(props) {
             Name: {monster.name} 
             <button id={id++} onClick={(event) => RemoveFromEncounter(event)} style={{float:'right'}}>Remove from Encounter</button> <br/> 
             Level: {monsterLevel} XP: {monsterXP}
-            <a href={monster.data.details.nethysUrl} target="_blank"  style={{float:'right'}}>Nethys</a></li>);
+            <a href={monster.data.details.nethysUrl} target="_blank" rel="noreferrer" style={{float:'right'}}>Nethys</a></li>);
     });
 
     return (

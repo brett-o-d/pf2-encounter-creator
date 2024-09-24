@@ -1,14 +1,14 @@
-import ashesBestiary from '../bestiaries/age-of-ashes-bestiary.json'
-import edgewatchBestiary from '../bestiaries/agents-of-edgewatch-bestiary.json'
-import extinctionCurseBestiary from '../bestiaries/extinction-curse-bestiary.json'
-import plaguestoneBestiary from '../bestiaries/fall-of-plaguestone.json'
-import menaceUnderOtariBestiary from '../bestiaries/menace-under-otari-bestiary.json'
+// import ashesBestiary from '../bestiaries/age-of-ashes-bestiary.json'
+// import edgewatchBestiary from '../bestiaries/agents-of-edgewatch-bestiary.json'
+// import extinctionCurseBestiary from '../bestiaries/extinction-curse-bestiary.json'
+// import plaguestoneBestiary from '../bestiaries/fall-of-plaguestone.json'
+// import menaceUnderOtariBestiary from '../bestiaries/menace-under-otari-bestiary.json'
 import pathfinderBestiary from '../bestiaries/pathfinder-bestiary.json'
 import pathfinderBestiary2 from '../bestiaries/pathfinder-bestiary-2.json'
-import season1Bestiary from '../bestiaries/pfs-season-1-bestiary.json'
-import season2Bestiary from '../bestiaries/pfs-season-2-bestiary.json'
-import slitheringBestiary from '../bestiaries/the-slithering-bestiary.json'
-import troublesInOtariBestiary from '../bestiaries/troubles-in-otari-bestiary.json';
+// import season1Bestiary from '../bestiaries/pfs-season-1-bestiary.json'
+// import season2Bestiary from '../bestiaries/pfs-season-2-bestiary.json'
+// import slitheringBestiary from '../bestiaries/the-slithering-bestiary.json'
+// import troublesInOtariBestiary from '../bestiaries/troubles-in-otari-bestiary.json';
 import { MonsterXP } from "./Constants";
 import { makeStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
